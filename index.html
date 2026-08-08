@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Последний букет</title>
+<meta name="theme-color" content="#12100f">
+<meta name="description" content="Последний букет для моей девушки. 13 августа 2026.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#10084;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&family=Marck+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-loading">
+
+<div class="grain" aria-hidden="true"></div>
+<canvas class="petals" aria-hidden="true"></canvas>
+
+<!-- ЗАГРУЗЧИК -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__mark"></div>
+</div>
+
+<!-- ШАПКА -->
+<header class="topbar">
+  <span class="topbar__mono" data-bind="monogram"></span>
+  <div class="topbar__right">
+    <span class="topbar__date" data-bind="weddingDateLabel"></span>
+    <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Включить музыку" hidden>
+      <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ПЕРВЫЙ ЭКРАН -->
+  <section class="hero" id="hero">
+    <div class="hero__media">
+      <img class="hero__img" id="heroImg" alt="" decoding="async" fetchpriority="high">
+      <div class="hero__veil" aria-hidden="true"></div>
+    </div>
+    <div class="hero__inner">
+      <p class="kicker kicker--light" data-bind="hero.kicker"></p>
+      <h1 class="hero__title" data-bind="hero.title"></h1>
+      <p class="hero__sub" data-bind="hero.subtitle"></p>
+    </div>
+    <a class="hero__hint" href="#intro">
+      <span data-bind="hero.scrollHint"></span>
+      <span class="hero__line" aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- ВСТУПЛЕНИЕ -->
+  <section class="intro" id="intro">
+    <p class="kicker" data-bind="intro.small"></p>
+    <div class="intro__lines" id="introLines"></div>
+  </section>
+
+  <!-- ИСТОРИЯ -->
+  <section class="story" id="story">
+    <div class="section-head">
+      <h2 class="section-title" data-bind="story.title"></h2>
+      <p class="section-lead" data-bind="story.lead"></p>
+    </div>
+    <div class="story__list" id="storyList"></div>
+  </section>
+
+  <!-- ГАЛЕРЕЯ -->
+  <section class="gallery" id="gallery">
+    <div class="section-head">
+      <h2 class="section-title" data-bind="gallery.title"></h2>
+      <p class="section-lead" data-bind="gallery.lead"></p>
+    </div>
+    <div class="gallery__grid" id="galleryGrid"></div>
+  </section>
+
+  <!-- ПИСЬМО -->
+  <section class="letter" id="letter">
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-expanded="false"
+         aria-controls="letterSheet" aria-label="Открыть письмо">
+      <svg class="envelope__svg" viewBox="0 0 220 150" aria-hidden="true">
+        <path class="env-body" d="M8 34h204v104a8 8 0 0 1-8 8H16a8 8 0 0 1-8-8z"/>
+        <path class="env-fold-l" d="M8 138V38l86 62z"/>
+        <path class="env-fold-r" d="M212 138V38l-86 62z"/>
+        <path class="env-flap" d="M8 36 110 8l102 28-102 72z"/>
+        <path class="env-heart" d="M110 62c-9-12-24-8-24 3 0 9 12 16 24 25 12-9 24-16 24-25 0-11-15-15-24-3z"/>
+      </svg>
+      <span class="envelope__hint" data-bind="letter.hint"></span>
+    </div>
+
+    <article class="sheet" id="letterSheet" hidden>
+      <h2 class="sheet__title" data-bind="letter.title"></h2>
+      <div class="sheet__body" id="letterBody"></div>
+      <p class="sheet__sign">
+        <span class="sheet__signLabel" data-bind="letter.signature"></span>
+        <span class="script" data-bind="him"></span>
+      </p>
+    </article>
+  </section>
+
+  <!-- БУКЕТ -->
+  <section class="bouquet" id="bouquet">
+    <div class="bouquet__art" aria-hidden="true">
+      <svg viewBox="0 0 400 520" class="flowers">
+        <g class="stems">
+          <path d="M200 470C200 400 168 340 128 268"/>
+          <path d="M200 470C200 410 216 344 254 274"/>
+          <path d="M200 472C200 420 190 356 176 300"/>
+          <path d="M200 470C200 424 226 372 292 330"/>
+          <path d="M200 470C200 424 172 376 110 336"/>
+        </g>
+        <g class="leaves">
+          <path d="M198 392c-34-14-54-6-64 8 20 12 46 12 64-8z"/>
+          <path d="M204 356c30-16 52-10 62 4-18 14-44 16-62-4z"/>
+          <path d="M200 424c26 14 44 34 44 34-24 4-42-12-44-34z"/>
+        </g>
+        <g class="blooms">
+          <g class="bloom" style="--x:128px;--y:262px;--s:1"></g>
+          <g class="bloom" style="--x:254px;--y:268px;--s:.92"></g>
+          <g class="bloom" style="--x:176px;--y:294px;--s:.8"></g>
+          <g class="bloom" style="--x:292px;--y:326px;--s:.72"></g>
+          <g class="bloom" style="--x:110px;--y:332px;--s:.76"></g>
+        </g>
+        <g class="wrap">
+          <path class="wrap__paper" d="M200 470c-46-2-70-26-76-52 24 16 50 22 76 22s52-6 76-22c-6 26-30 50-76 52z"/>
+          <path class="ribbon" d="M168 452c22 10 42 10 64 0"/>
+          <path class="ribbon" d="M186 462c-14 20-26 26-40 28 8-14 14-24 16-34"/>
+          <path class="ribbon" d="M214 462c14 20 26 26 40 28-8-14-14-24-16-34"/>
+        </g>
+      </svg>
+    </div>
+    <div class="bouquet__text">
+      <p class="kicker" data-bind="bouquet.kicker"></p>
+      <h2 class="bouquet__title" data-bind="bouquet.title"></h2>
+      <div class="bouquet__lines" id="bouquetLines"></div>
+      <p class="bouquet__note script" data-bind="bouquet.note"></p>
+    </div>
+  </section>
+
+  <!-- ОБЕЩАНИЯ -->
+  <section class="vows" id="vows">
+    <h2 class="section-title" data-bind="vows.title"></h2>
+    <ol class="vows__list" id="vowsList"></ol>
+  </section>
+
+  <!-- СЧЁТЧИК -->
+  <section class="count" id="count">
+    <p class="count__label" id="countLabel"></p>
+    <div class="count__grid" id="countGrid"></div>
+    <p class="count__sub" id="countSub"></p>
+    <p class="count__note" data-bind="count.note"></p>
+  </section>
+
+  <!-- ФИНАЛ -->
+  <section class="finale" id="finale">
+    <h2 class="finale__title" data-bind="finale.title"></h2>
+    <p class="finale__text" data-bind="finale.text"></p>
+    <p class="finale__sign script" data-bind="finale.signature"></p>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span class="foot__mono" data-bind="monogram"></span>
+  <span class="foot__note"></span>
+</footer>
+
+<!-- ПРОСМОТР ФОТО -->
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+  <button class="lb__close" id="lbClose" type="button" aria-label="Закрыть">&#215;</button>
+  <button class="lb__nav lb__nav--prev" id="lbPrev" type="button" aria-label="Предыдущее фото">&#8249;</button>
+  <figure class="lb__figure">
+    <img class="lb__img" id="lbImg" alt="">
+    <figcaption class="lb__cap" id="lbCap"></figcaption>
+  </figure>
+  <button class="lb__nav lb__nav--next" id="lbNext" type="button" aria-label="Следующее фото">&#8250;</button>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
